@@ -1,15 +1,14 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-08-20T11:28:22
+# Project created by QtCreator 2019-08-07T19:28:50
 #
 #-------------------------------------------------
 
-QT       += core gui network
-CONFIG   += console
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = untitled1
+TARGET = FirstApp
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -39,3 +38,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    FirstApp.pro.user
