@@ -14,44 +14,48 @@
 #include <QComboBox>
 
 
+static int arr[30];
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    QUrl ava_url("http://ec2-13-209-5-1.ap-northeast-2.compute.amazonaws.com/file/weight/list/");
-    QNetworkRequest ava_request(ava_url);
+   QUrl ava_url("http://ec2-13-209-5-1.ap-northeast-2.compute.amazonaws.com/file/image/list/");
+       QNetworkRequest ava_request(ava_url);
 
 
-    QNetworkAccessManager *manager = new QNetworkAccessManager();
-       QEventLoop loop;
+       QNetworkAccessManager *manager = new QNetworkAccessManager();
+          QEventLoop loop;
 
-       QObject::connect(manager, SIGNAL(finished(QNetworkReply*)),
-                        &loop,
-                        SLOT(quit()));
+          QObject::connect(manager, SIGNAL(finished(QNetworkReply*)),
+                           &loop,
+                           SLOT(quit()));
 
-       QNetworkReply *reply = manager->get(ava_request);
-       loop.exec();
+          QNetworkReply *reply = manager->get(ava_request);
+          loop.exec();
 
-       QString response = (QString)reply->readAll();
+          QString response = (QString)reply->readAll();
 
-    //   qDebug() << response;
-       QJsonDocument temp = QJsonDocument::fromJson(response.toUtf8());
+       //   qDebug() << response;
+          QJsonDocument temp = QJsonDocument::fromJson(response.toUtf8());
 
-       QJsonObject jsonObj = temp.object();
+          QJsonObject jsonObj = temp.object();
 
-       QJsonArray project_list = jsonObj["Weight Files"].toArray();
+          QJsonArray project_list = jsonObj["Image Files"].toArray();
 
 
+          for(int i=0; i < project_list.count(); i++){
+              QJsonObject value = project_list[i].toObject();
+             // qDebug() << value["title"].toString();
+            //  qDebug() << value["id"].toInt();
+              arr[i] = value["id"].toInt();
 
-       for(int i=0; i < project_list.count(); i++){
-           QJsonObject value = project_list[i].toObject();
-           qDebug() << value["title"].toString();
-           qDebug() << value["id"].toInt();
+              ui->comboBox->addItem(value["title"].toString());
+       }
 
-           ui->comboBox->addItem(value["title"].toString());
-    }
 
 
 }
@@ -86,13 +90,6 @@ void MainWindow::on_pushButton_label_clicked()
 
     labelcmd = system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release & yolo_mark.cmd" );
    // system("yolo_mark.cmd");
-
-    if (labelcmd > 0 || -1){
-        QMessageBox::information(this,"error", "confirm file.");
-      }
-    else{
-        QMessageBox::information(this,"labeling", "labeling complete.");
-    }
 
 
   //  QMessageBox::information(this,"labeling", "labeling complete.");
@@ -131,9 +128,7 @@ void MainWindow::on_pushButton_learn_clicked()
 }
 
 void MainWindow::on_pushButton_transmit_clicked()
-{
-
-
+{  
     //파일1번
     system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\backup & move /y yolov3-tiny_obj_last.weights C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
 
@@ -144,12 +139,6 @@ void MainWindow::on_pushButton_transmit_clicked()
     system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\data & tar -cf datafile.tar train.txt yolov3-tiny_obj_last.weights obj.names obj.data yolov3-tiny_obj.cfg");
 
 
-
-
-
-
-
-
    QMessageBox::information(this,"transmitting", "transmitting complete.");
 }
 
@@ -157,14 +146,15 @@ void MainWindow::on_pushButton_transmit_clicked()
 
 
 
-
-
-
-
-
 void MainWindow::on_pushButton_download_clicked()
 {
-    int currentIndex = ui->comboBox->currentIndex();
+    int id = ui->comboBox->currentIndex(); //콤보박스 선택값
+    int arrindex = arr[id];
+    QString n = QString::number(arrindex);//QString 변환
+
+
+    QString download =  "cd C:/Users/ipslGoodPc/Desktop/source & downloadFile.sh " + n; // QString으로 경로저장 경로바꿔줘야함 sh파일이 있어야함
+    system(download.toUtf8());
 
 
     QMessageBox::information(this,"download", "downloading complete.");
