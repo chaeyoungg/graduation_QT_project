@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="pushButton_learn">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>160</y>
+      <x>350</x>
+      <y>150</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -53,8 +53,8 @@
    <widget class="QPushButton" name="pushButton_label">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>220</y>
+      <x>200</x>
+      <y>150</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -66,14 +66,24 @@
    <widget class="QPushButton" name="pushButton_download">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>160</y>
+      <x>50</x>
+      <y>150</y>
       <width>131</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
      <string>이미지 다운로드</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>220</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
     </property>
    </widget>
   </widget>

@@ -15,6 +15,7 @@
 
 
 static int arr[30];
+static QString str[30];
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -52,6 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
              // qDebug() << value["title"].toString();
             //  qDebug() << value["id"].toInt();
               arr[i] = value["id"].toInt();
+              str[i] = value["title"].toString();
 
               ui->comboBox->addItem(value["title"].toString());
        }
@@ -138,8 +140,25 @@ void MainWindow::on_pushButton_transmit_clicked()
     //tar zip
     system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\data & tar -cf datafile.tar train.txt yolov3-tiny_obj_last.weights obj.names obj.data yolov3-tiny_obj.cfg");
 
+/*
+    int id = ui->comboBox->currentIndex(); //콤보박스 선택값
+    QString arrtitle = str[id];
 
-   QMessageBox::information(this,"transmitting", "transmitting complete.");
+
+    */
+
+
+  //  QString transmit =  "cd C:/Users/chaeyoungg/Desktop/untitled1/graduation_QT_project & uploadWeightFile.sh " + arrtitle; // QString으로 경로저장 경로바꿔줘야함 sh파일이 있어야함
+
+    QString n = ui->lineEdit->text(); //Line edit의 테스트값 저장
+
+    QString transmit =  "cd C:/Users/chaeyoungg/Desktop/untitled1/graduation_QT_project & uploadWeightFile.sh " + n; //입력된 텍스트값 붙여서 저장
+//    qDebug() << transmit;
+
+    system(transmit.toUtf8()); //전송요청
+
+
+    QMessageBox::information(this,"transmitting", "transmitting complete.");
 }
 
 
@@ -153,7 +172,7 @@ void MainWindow::on_pushButton_download_clicked()
     QString n = QString::number(arrindex);//QString 변환
 
 
-    QString download =  "cd C:/Users/ipslGoodPc/Desktop/source & downloadFile.sh " + n; // QString으로 경로저장 경로바꿔줘야함 sh파일이 있어야함
+    QString download =  "cd C:/Users/chaeyoungg/Desktop/untitled1/graduation_QT_project & downloadFile.sh " + n; // QString으로 경로저장 경로바꿔줘야함 sh파일이 있어야함
     system(download.toUtf8());
 
 
