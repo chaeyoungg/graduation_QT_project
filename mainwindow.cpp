@@ -83,15 +83,18 @@ int MainWindow::on_comboBox_activated(int index)
 void MainWindow::on_pushButton_label_clicked()
 {
 
-  /*  QProcess process;
-    process.setWorkingDirectory("C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release");
-    process.start("yolo_mark.cmd");*/
+
+//    QProcess process;
+//    process.setWorkingDirectory("C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release");
+//    process.start("yolo_mark.cmd");
+
+
    // process.waitForFinished(-1);
 
     int labelcmd;
 
     labelcmd = system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release & yolo_mark.cmd" );
-   // system("yolo_mark.cmd");
+    system("yolo_mark.cmd");
 
 
   //  QMessageBox::information(this,"labeling", "labeling complete.");
@@ -100,15 +103,15 @@ void MainWindow::on_pushButton_learn_clicked()
 {
 
     //파일1번
-    system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release & move /y yolo-obj.cfg C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64");
+   // system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release & copy /y yolo-obj.cfg C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64");
     //파일2번
-    system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data & move /y img C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
+    system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data & move /y img C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data\\img");
     //파일3번
-    system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data & move /y obj.data C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
+    system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data & copy /y obj.data C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
     //파일4번
-    system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data & move /y obj.names C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
+    system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data & copy /y obj.names C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
     //파일5번
-    system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data & move /y train.txt C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
+    system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data & copy /y train.txt C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
     //파일6번
     system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\cfg & move /y yolov3-tiny_obj.cfg C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64");
 
@@ -129,21 +132,24 @@ void MainWindow::on_pushButton_learn_clicked()
 
 }
 
+
 void MainWindow::on_pushButton_transmit_clicked()
-{  
+{
     //파일1번
-    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\backup & move /y yolov3-tiny_obj_last.weights C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
+    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\backup & copy /y yolov3-tiny_obj_last.weights C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
 
     //파일2번
-    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64 & move /y yolov3-tiny_obj.cfg C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
+    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64 & copy /y yolov3-tiny_obj.cfg C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
+    //파일3번
+    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\cfg & copy yolov3-tiny_obj.cfg C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
 
-    //tar zip
-    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\data & tar -cf datafile.tar train.txt yolov3-tiny_obj_last.weights obj.names obj.data yolov3-tiny_obj.cfg");
+    //tar zip                                                                                              파일이름여기
+    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\data & tar -cf test.tar train.txt yolov3-tiny_obj_last.weights obj.names obj.data yolov3-tiny_obj.cfg");
 
+    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\data & copy /y test.tar C:\\Users\\ipslGoodPc\\Desktop\\source\\transmit "); //압축돼서 copy 된 tar파일을 transmit폴더에 넣어줌
 /*
     int id = ui->comboBox->currentIndex(); //콤보박스 선택값
     QString arrtitle = str[id];
-
 
     */
 
@@ -171,9 +177,22 @@ void MainWindow::on_pushButton_download_clicked()
     int arrindex = arr[id];
     QString n = QString::number(arrindex);//QString 변환
 
+                                                              //경로바뀌면 이 앞부터 변경
+//    QProcess *Prozess = new QProcess();
+//    QProcess::startDetached("cmd.exe", QStringList() << "downloadFile.sh" + n, "C:/Users/ipslGoodPc/Desktop/source/downloaded/");
+//    Prozess->setWorkingDirectory(QDir::homePath()+ "/downloaded/");
+//    Prozess->start("C:/Users/ipslGoodPc/Desktop/source/downloaded/downloadFile.sh");
 
-    QString download =  "cd C:/Users/ipslGoodPc/Desktop/source & downloadFile.sh " + n; // QString으로 경로저장 경로바꿔줘야함 sh파일이 있어야함
+
+    QString download =  "cd C:/Users/ipslGoodPc/Desktop/source/downloaded & downloadFile.sh " + n; // QString으로 경로저장 경로바꿔줘야함 sh파일이 있어야함
     system(download.toUtf8());
+
+    //cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release & yolo_mark.cmd
+    system("cd C:/Users/ipslGoodPc/Desktop/source/downloaded & tar -xf test.tar"); //tar 파일 압축 풀기
+    system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data\\img & del /s /q ."); //전에 있던 이미지 데이터 삭제
+    system("cd C:/Users/ipslGoodPc/Desktop/source/downloaded & copy /y img C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data\\img "); //이미지 폴더에 복사
+    system("cd C:/Users/ipslGoodPc/Desktop/source/downloaded & rd /s /q img"); //다운받아 남아있는 이미지 폴더 삭제
+//rd /s /q img 빼고
 
 
     QMessageBox::information(this,"download", "downloading complete.");
