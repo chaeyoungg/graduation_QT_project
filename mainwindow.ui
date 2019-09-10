@@ -6,96 +6,124 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>543</width>
-    <height>396</height>
+    <width>272</width>
+    <height>223</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Training App</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="pushButton_learn">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>150</y>
-      <width>131</width>
-      <height>31</height>
+      <x>10</x>
+      <y>90</y>
+      <width>251</width>
+      <height>32</height>
      </rect>
     </property>
-    <property name="text">
-     <string>학습하기</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_transmit">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>220</y>
-      <width>131</width>
-      <height>31</height>
-     </rect>
+    <property name="font">
+     <font>
+      <family>KBIZgo H</family>
+      <pointsize>12</pointsize>
+     </font>
     </property>
     <property name="text">
-     <string>전송하기</string>
+     <string>Learning</string>
     </property>
    </widget>
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>60</y>
-      <width>181</width>
-      <height>41</height>
+      <x>10</x>
+      <y>10</y>
+      <width>171</width>
+      <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>16</pointsize>
+     </font>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_label">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>150</y>
-      <width>131</width>
-      <height>31</height>
+      <x>10</x>
+      <y>50</y>
+      <width>251</width>
+      <height>32</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>KBIZgo H</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>라벨링하기</string>
+     <string>Labeling</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_download">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>150</y>
-      <width>131</width>
-      <height>31</height>
+      <x>190</x>
+      <y>10</y>
+      <width>71</width>
+      <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>KBIZgo H</family>
+      <pointsize>9</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
     <property name="text">
-     <string>이미지 다운로드</string>
+     <string>Get</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>220</y>
+      <x>10</x>
+      <y>140</y>
       <width>171</width>
-      <height>31</height>
+      <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>543</width>
-     <height>21</height>
-    </rect>
-   </property>
+   <widget class="QPushButton" name="pushButton_transmit">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>140</y>
+      <width>71</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>KBIZgo H</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>send</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -106,6 +134,16 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>272</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

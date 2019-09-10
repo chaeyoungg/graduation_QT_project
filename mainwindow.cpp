@@ -84,43 +84,90 @@ void MainWindow::on_pushButton_label_clicked()
 {
 
 
-//    QProcess process;
-//    process.setWorkingDirectory("C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release");
-//    process.start("yolo_mark.cmd");
+   // QProcess *process = new QProcess(this);
+//    process->setWorkingDirectory("C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release");
+//   QString arguments = "cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release & yolo_mark.cmd";
+
+//    QString program = "ipconfig";
+//    QString program = "cd";
+//    QStringList arguments;
+//    arguments << "C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release & yolo_mark.cmd";
+//    process->start(program, arguments);
 
 
-   // process.waitForFinished(-1);
+   // process->waitForFinished(3000);
+
+//    QProcess *m_process = new QProcess(this);
+
+//    m_process->setWorkingDirectory("C:/Team_VeryVery/Yolo_mark-master/x64/Release");
+//    QString arguments;
+
+//    arguments = "cd C:/Team_VeryVery/Yolo_mark-master/x64/Release & yolo_mark.cmd";
+
+//    m_process->start(arguments);
+//    m_process->waitForFinished(3000);
+
+//    QByteArray result = m_process->readAll();
+//    qDebug() << result;
+
+
+     QProcess *m_process = new QProcess(this);
+
+//     m_process->startDetached("cd C:/Team_VeryVery/Yolo_mark-master/x64/Release & yolo_mark.cmd");
+
+//     QStringList arguments;
+//     arguments << "cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release & yolo_mark.cmd";
+
+//     qDebug() << arguments;
+//     m_process->setWorkingDirectory("C:/Team_VeryVery/Yolo_mark-master/x64/Release");
+//     m_process->startDetached("cmd");
+//     m_process->startDetached("cd");
+
+//     m_process->startDetached("call", QStringList() << "yolo_mark.cmd", "C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release");
+
+
+
+
+
+
+
+
+
+
+
+
+//     QDir::setCurrent("C:/Team_VeryVery/Yolo_mark-master/x64/Release");
+//     system("yolo_mark.cmd");
+
 
     int labelcmd;
 
     labelcmd = system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release & yolo_mark.cmd" );
-    system("yolo_mark.cmd");
 
-
-  //  QMessageBox::information(this,"labeling", "labeling complete.");
 }
+
 void MainWindow::on_pushButton_learn_clicked()
 {
 
-    //파일1번
-   // system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release & copy /y yolo-obj.cfg C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64");
     //파일2번
-    system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data & move /y img C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data\\img");
-    //파일3번
-    system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data & copy /y obj.data C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
+    system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data & copy /y img C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data\\img");
     //파일4번
     system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data & copy /y obj.names C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
-    //파일5번
-    system("cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data & copy /y train.txt C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
     //파일6번
-    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\cfg & move /y yolov3-tiny_obj.cfg C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64");
-
-
+    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\cfg & copy /y yolov3-tiny_obj.cfg C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64");
 
 
 
     int learncmd;
-    learncmd = system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64 & darknet.exe detector train data/obj.data yolov3-tiny_obj.cfg yolov3-tiny.conv.15");
+ //   learncmd = system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64 & darknet.exe detector train data/obj.data yolov3-tiny_obj.cfg yolov3-tiny.conv.15");
+
+      QDir::setCurrent("C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64");
+      system("darknet.exe detector train data/obj.data yolov3-tiny_obj.cfg yolov3-tiny.conv.15");
+
+
+
+
+
 
 
     if (learncmd > 0){
@@ -135,36 +182,67 @@ void MainWindow::on_pushButton_learn_clicked()
 
 void MainWindow::on_pushButton_transmit_clicked()
 {
-    //파일1번
-    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\backup & copy /y yolov3-tiny_obj_last.weights C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
+    //1000 weight
 
-    //파일2번
-    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64 & copy /y yolov3-tiny_obj.cfg C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
+    QDir::setCurrent("C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\backup");
+    system("copy /y yolov3-tiny_obj_1000.weights C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data\\test");
+
+
+
+    //3000 weight
+
+    QDir::setCurrent("C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\backup");
+    system("copy /y yolov3-tiny_obj_3000.weights C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data\\test");
+
+   // system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\backup & copy /y yolov3-tiny_obj_3000.weights C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data\\test");
+
+    //5000 weight
+
+    QDir::setCurrent("C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\backup");
+    system("copy /y yolov3-tiny_obj_5000.weights C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data\\test");
+
+   // system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\backup & copy /y yolov3-tiny_obj_5000.weights C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data\\test");
+
+
     //파일3번
-    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\cfg & copy yolov3-tiny_obj.cfg C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data");
+
+    QDir::setCurrent("C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\backup");
+    system("copy /y yolov3-tiny_obj_5000.weights C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data\\test");
+
+    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\cfg & copy /y yolov3-tiny_obj.cfg C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data\\test");
+
+    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\data & copy /y obj.names C:\\Team_VeryVery\\\"darknet-master (1)\"\\darknet-master\\build\\darknet\\x64\\data\\test");
+
+
+
+
+
+  //  system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\backup & del /s /q ."); //전에 있던 weight 데이터 삭제
+
+
 
     //tar zip                                                                                              파일이름여기
-    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\data & tar -cf test.tar train.txt yolov3-tiny_obj_last.weights obj.names obj.data yolov3-tiny_obj.cfg");
+    system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\data & tar -cf test.tar test");
 
     system("cd C:\\Team_VeryVery\\darknet-master (1)\\darknet-master\\build\\darknet\\x64\\data & copy /y test.tar C:\\Users\\ipslGoodPc\\Desktop\\source\\transmit "); //압축돼서 copy 된 tar파일을 transmit폴더에 넣어줌
-/*
-    int id = ui->comboBox->currentIndex(); //콤보박스 선택값
-    QString arrtitle = str[id];
-
-    */
 
 
-  //  QString transmit =  "cd C:/Users/chaeyoungg/Desktop/untitled1/graduation_QT_project & uploadWeightFile.sh " + arrtitle; // QString으로 경로저장 경로바꿔줘야함 sh파일이 있어야함
+
 
     QString n = ui->lineEdit->text(); //Line edit의 테스트값 저장
 
-    QString transmit =  "cd C:/Users/ipslGoodPc/Desktop/source & uploadWeightFile.sh " + n; //입력된 텍스트값 붙여서 저장
+/*
+
+    QString transmit =  "cd C:/Users/ipslGoodPc/Desktop/source/transmit & uploadWeightFile.sh " + n; //입력된 텍스트값 붙여서 저장
 //    qDebug() << transmit;
 
     system(transmit.toUtf8()); //전송요청
 
-
     QMessageBox::information(this,"transmitting", "transmitting complete.");
+
+
+*/
+
 }
 
 
@@ -184,8 +262,16 @@ void MainWindow::on_pushButton_download_clicked()
 //    Prozess->start("C:/Users/ipslGoodPc/Desktop/source/downloaded/downloadFile.sh");
 
 
-    QString download =  "cd C:/Users/ipslGoodPc/Desktop/source/downloaded & downloadFile.sh " + n; // QString으로 경로저장 경로바꿔줘야함 sh파일이 있어야함
+//    QString download =  "cd C:/Users/ipslGoodPc/Desktop/source/downloaded & downloadFile.sh " + n; // QString으로 경로저장 경로바꿔줘야함 sh파일이 있어야함
+//    system(download.toUtf8());
+
+
+
+    QString download = "runDownload.vbs " + n;
+    QDir::setCurrent("C:/Users/ipslGoodPc/Desktop/source/downloaded");
     system(download.toUtf8());
+
+
 
     //cd C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release & yolo_mark.cmd
     system("cd C:/Users/ipslGoodPc/Desktop/source/downloaded & tar -xf test.tar"); //tar 파일 압축 풀기
@@ -193,6 +279,10 @@ void MainWindow::on_pushButton_download_clicked()
     system("cd C:/Users/ipslGoodPc/Desktop/source/downloaded & copy /y img C:\\Team_VeryVery\\Yolo_mark-master\\x64\\Release\\data\\img "); //이미지 폴더에 복사
     system("cd C:/Users/ipslGoodPc/Desktop/source/downloaded & rd /s /q img"); //다운받아 남아있는 이미지 폴더 삭제
 //rd /s /q img 빼고
+
+
+
+
 
 
     QMessageBox::information(this,"download", "downloading complete.");
